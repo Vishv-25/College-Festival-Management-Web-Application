@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizer Details</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='alloworganizer.css') }}">
+</head>
+<body>
+    <nav class="Navbar">
+        <h1 class="welcome1">Organizer</h1>
+        <a href="/dashboard" class="notification">Dashboard</a>
+        <a href="/notifications" class="notification">Notifications</a>
+    
+        <a href="/logout" class="logout">Logout</a>
+        <!-- <img src="../static/images/logoutlogo.png" class="App-logo" alt="logo" /> -->
+    </nav>
+    <h1 class="welcome">Organizer Details</h1>
+    <div class="table1">
+        <table border="1">
+            <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Email ID</th>
+            </tr>
+            <tr>
+                <td>{{ organizer.username }}</td>
+                <td>{{ organizer.name }}</td>
+                <td>{{ organizer.phone }}</td>
+                <td>{{ organizer.email }}</td>
+            </tr>
+        </table>
+    </div>
+    
+
+    <h1 class="welcome">Events Organized</h1>
+    <div class="table">
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Event Details</th>
+            </tr>
+            {% for event in organizer.events_organized %}
+            <tr>
+                <td>{{ event.name }}</td>
+                <td>{{ event.type }}</td>
+                <td>{{ event.date }}</td>
+                <td><a href="/event/{{ event.id }}/details">View Details</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+</body>
+</html>

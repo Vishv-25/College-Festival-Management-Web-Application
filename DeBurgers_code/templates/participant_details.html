@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participant Details</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='alloworganizer.css') }}">
+</head>
+<body>
+    <nav class="Navbar">
+        <h1 class="welcome1">Participant</h1>
+        <a href="/dashboard" class="notification">Dashboard</a>
+        <a href="/notifications" class="notification">Notifications</a>
+    
+        <a href="/logout" class="logout">Logout</a>
+        <!-- <img src="../static/images/logoutlogo.png" class="App-logo" alt="logo" /> -->
+    </nav>
+    <h1 class="welcome">Participant Details</h1>
+    <div class="table1">
+        <table>
+            <tr>
+                <th>Attribute</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Username</td>
+                <td>{{ participant.username }}</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{ participant.name }}</td>
+            </tr>
+            <tr>
+                <td>College</td>
+                <td>{{ participant.college }}</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td>{{ participant.phone }}</td>
+            </tr>
+            <tr>
+                <td>Email ID</td>
+                <td>{{ participant.email }}</td>
+            </tr>
+            </table>
+    </div>
+    <h1 class="welcome">Events Participated</h1>
+    <div class="table">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Event Details</th>
+            </tr>
+            {% for event in participant.events_participated %}
+                <tr>
+                    <td>{{ event.name }}</td>
+                    <td>{{ event.type }}</td>
+                    <td>{{ event.date }}</td>
+                    <td><a href="/event/{{ event.id }}/details">View Details</a></td>
+                    
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+                
+</body>
+</html>

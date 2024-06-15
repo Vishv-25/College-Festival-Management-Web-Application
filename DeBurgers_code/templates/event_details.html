@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='eventdetails.css') }}">
+    <!-- <link rel='stylesheet' type='text/css' href="../static//eventdetails.css"> -->
+</head>
+<body>
+    <nav class="Navbar">
+        <h1 class="welcome1">Events</h1>
+        <a href="/dashboard" class="notification">Dashboard</a>
+        <a href="/notifications" class="notification">Notifications</a>
+        <a href="/logout" class="logout">Logout</a>
+        <!-- <img src="../static/images/logoutlogo.png" class="App-logo" alt="logo" /> -->
+    </nav>
+    <h1 class="heading">Event Details</h1>
+
+    <div class="events">
+        <div class="flip-card1">
+            <div class="flip-card-inner">
+            
+            <div class="flip-card-back3">
+                <h4 class="eventname">{{ event.name }}</h4>
+                <p>Type-{{ event.type }}</p>
+                <p>Date-{{ event.date }}</p>
+                <p>Venue-{{ event.venue }}</p>
+                <p>Prize-{{ event.prize }}</p>
+                <p>Winner-{{ winner_name}}</p>
+                <p>Username-{{ event.winner_username }}</p>
+                <p>Description:{{event.description}}</p>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="heading1">Volunteers</h2>
+    <!-- <ul>
+        {% for volunteer in volunteers %}
+        <li>{{ volunteer.name }} - {{ volunteer.roll_number }}</li>
+        {% endfor %}
+    </ul> -->
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Volunteer Name</th>
+                    <th>Roll Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for volunteer in volunteers %}
+                <tr>
+                    <td>{{ volunteer.name }}</td>
+                    <td>{{ volunteer.roll_number }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>  
+    <div class="signup">
+        <h2 class="heading">Update Winner</h2>
+        <form action="/submit_winner/{{ event.id }}" method="post" class="form">
+            <select name="winner" class="option">
+                {% for participant in participants %}
+                <option value="{{ participant[0] }}" class="option">{{ participant[1] }} - {{ participant[0] }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Submit Winner" class="submit">
+        </form>
+    </div>
+    
+</body>
+</html>

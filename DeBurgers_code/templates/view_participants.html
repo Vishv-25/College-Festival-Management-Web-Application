@@ -1,0 +1,40 @@
+<!-- view_participants.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Participants</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='alloworganizer.css') }}">
+</head>
+<body>
+    <nav class="Navbar">
+        <h1 class="welcome1">Participant</h1>
+        <a href="/dashboard" class="notification">Dashboard</a>
+        <a href="/notifications" class="notification">Notifications</a>
+    
+        <a href="/logout" class="logout">Logout</a>
+        <!-- <img src="../static/images/logoutlogo.png" class="App-logo" alt="logo" /> -->
+    </nav>
+    <h1>Participants List</h1>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for participant_info in participants_info %}
+                <tr>
+                    <td>{{ participant_info[0] }}</td>
+                    <td>{{ participant_info[1] }}</td>
+                    <td><a href="/participant_details/{{ participant_info[0] }}" class="details-btn">View Details</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>

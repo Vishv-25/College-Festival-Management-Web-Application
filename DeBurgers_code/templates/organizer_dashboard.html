@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organizer Dashboard</title>
+<link rel="stylesheet" type="text/css" href="../static/studentdashboard.css">
+<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='studentdashboard.css') }}"> -->
+</head>
+<body>
+  <nav class="Navbar">
+    <h1 class="welcome1">Dashboard</h1>
+    <a href="/notifications" class="notification">Notifications</a>
+
+    <a href="/logout" class="logout">Logout</a>
+    <!-- <img src="../static/images/logoutlogo.png" class="App-logo" alt="logo" /> -->
+</nav>
+  <h1 class="welcome">Welcome Back, {{name}}</h1>
+
+{% if allowed %}
+  <div class="signup" >
+
+    <form action="/organizer_view_events" method="get">
+      <button type="submit" class="btn">View Events</button>
+    </form>
+
+    <form action="/create_event" method="get">
+      <button type="submit" class="btn">Create New Event</button>
+    </form>
+  </div>
+{% else %}
+  <p>You have not been granted permission by the admin yet. Please wait...</p>
+{% endif %}
+
+</body>
+</html>
